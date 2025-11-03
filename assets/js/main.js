@@ -183,3 +183,37 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
+  document.getElementById('contact-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      subject: form.subject.value,
+      message: form.message.value,
+      token: 'superclave4890!' // debe coincidir con CORREO_TOKEN en tu Edge Function
+    };
+
+    try {
+      const res = await fetch('https://iryugjopkgbvskozdqbx.supabase.co/functions/v1/correo-tabuena', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        document.querySelector('.sent-message').style.display = 'block';
+        document.querySelector('.error-message').style.display = 'none';
+        form.reset();
+      } else {
+        document.querySelector('.error-message').textContent = 'Error al enviar el mensaje';
+        document.querySelector('.error-message').style.display = 'block';
+      }
+    } catch (err) {
+      console.error(err);
+      document.querySelector('.error-message').textContent = 'Error de conexión';
+      document.querySelector('.error-message').style.display = 'block';
+    }
+  });
