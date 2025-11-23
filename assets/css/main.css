@@ -1224,6 +1224,7 @@ section,
 
 .gallery .gallery-item img {
   transition: all ease-in-out 0.4s;
+  width: 80%; height: auto; border-radius: 10px; border: 2px solid black;
 }
 
 .gallery .gallery-item:hover img {
@@ -1745,4 +1746,26 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+
+.contenedor {
+  position: relative; /* referencia para los hijos */
+  width: 400px;
+  height: 300px;
+}
+
+.fondo {
+  width: 40%;
+  height: auto;
+  border-radius: 10px;
+  border: 2px solid 
+}
+
+.superpuesta {
+  position: absolute;
+  top: -20px;   /* distancia desde arriba */
+  left: 120px;  /* distancia desde la izquierda */
+  width: 40%;
+  border-radius: 10px;
+  border: 2px solid 
 }
